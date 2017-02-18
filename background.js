@@ -1,7 +1,7 @@
 const time =  4 * 60 * 1000;
-let tabToCheck = null;
 let newHtml = '';
 let oldHtml = '';
+
 const notificationOptions = {
   type: 'basic',
   title: 'WYNIKI SIĘ POJAWIŁYYYYYYYY!!!!!!!!',
@@ -9,6 +9,14 @@ const notificationOptions = {
   message: 'SPRAWDŹ BO WYNIKI SIĘ POJAWIŁYYYYYYYY!!!!!!',
   requireInteraction: true
 };
+
+const syncHttpGet = (theUrl) => {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+};
+
 chrome.runtime.onConnect.addListener((port) => {
   port.onMessage.addListener((msg) => {
     oldHtml = syncHttpGet(msg.tabToCheck.url);
@@ -20,10 +28,4 @@ chrome.runtime.onConnect.addListener((port) => {
       }
     }, time);
   });
-})
-const syncHttpGet = (theUrl) => {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false );
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
+});
