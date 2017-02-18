@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Exam results checker",
+  "description": "Exam results checker",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "activeTab",
+    "notifications",
+    "storage",
+    "tabs"
+  ]
+}
